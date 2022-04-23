@@ -23,3 +23,26 @@ export default function useFetch(url) {
 
   return { estate, error, loading };
 }
+
+export function useFetchPost(url, data) {
+  const [estate, setEstate] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await axios.post(url, data);
+        setEstate(res.data.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [url, data]);
+
+  return { estate, error, loading };
+}
