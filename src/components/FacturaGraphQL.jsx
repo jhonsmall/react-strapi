@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client';
 
 const FACTURAS = gql`
   {
-    facturas {
+    facturas(pagination: { page: 1, pageSize: 20 }) {
       data {
         id
         attributes {

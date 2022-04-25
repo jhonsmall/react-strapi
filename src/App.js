@@ -1,9 +1,8 @@
 import React from 'react';
 
-// import Factura from './components/Factura';
-import CreateFactura from './components/CreateFactura';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import FacturaGraphQL from './components/FacturaGraphQL';
+import CreateFacturaGraphQL from './components/CreateFacturaGraphQL';
 
 const client = new ApolloClient({
   uri: 'http://localhost:1337/graphql',
@@ -14,7 +13,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <CreateFactura />
+        <CreateFacturaGraphQL />
         <FacturaGraphQL />
       </div>
     </ApolloProvider>
