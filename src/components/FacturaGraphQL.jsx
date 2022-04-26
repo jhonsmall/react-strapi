@@ -10,6 +10,27 @@ const FACTURAS = gql`
           Numero
           Nombre
           Direccion
+          detalle_facturas {
+            data {
+              id
+              attributes {
+                Cantidad
+                Nombre
+                Valor
+                createdAt
+                medida {
+                  data {
+                    id
+                    attributes {
+                      Numero
+                      Nombre
+                      Comentario
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -41,7 +62,23 @@ const FacturaGraphQL = () => {
                     <h6 className="card-subtitle mb-2 text-muted">
                       {factura.attributes.Nombre}
                     </h6>
+                    <p className="card-text">
+                      {console.log('datos es: ')}
+                      {factura.attributes.detalle_facturas.data.map(
+                        (detalle) => (
+                            detalle.attributes.Nombre
+                        )
+                      )}
+                      {/* {console.log(
+                        factura.attributes.detalle_facturas.data.attributes
+                          .Nombre
+                      )} */}
+                      {/* {factura.attributes.detalle_facturas.data.id} */}
+                    </p>
                     <p className="card-text">{factura.attributes.Direccion}</p>
+                    {/* <p className="card-text">
+                      {factura.attributes.detalle_facturas.data.attributes.Nombre}
+                    </p> */}
                   </div>
                 </div>
               ))}
