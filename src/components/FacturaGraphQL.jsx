@@ -43,7 +43,22 @@ const FacturaGraphQL = () => {
   if (error) return <p> {error} Error :( </p>;
 
   console.log('estate');
-  console.log(data);
+  
+    // console.log(data);
+    const {facturas} = data;
+    // console.log(facturas.data);
+    // console.log(facturas.data.attributes);
+    // if (facturas.data.attributes.detalle_facturas != null) {
+      // const { detalle_facturas } = facturas.data;
+      // console.log(detalle_facturas);
+      facturas.data.map((detalle) => {
+        console.log(detalle.attributes.Nombre);
+        console.log(detalle.attributes.detalle_facturas);
+        return null;
+      }
+      );
+    // }
+  
 
   return (
     <>
@@ -65,9 +80,7 @@ const FacturaGraphQL = () => {
                     <p className="card-text">
                       {console.log('datos es: ')}
                       {factura.attributes.detalle_facturas.data.map(
-                        (detalle) => (
-                            detalle.attributes.Nombre
-                        )
+                        (detalle) => detalle.attributes.Nombre
                       )}
                       {/* {console.log(
                         factura.attributes.detalle_facturas.data.attributes
